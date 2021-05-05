@@ -8,7 +8,7 @@ readonly PACMANS=(
 	"paru"
 	"yay"
 	"pacman"
-) 
+)
 
 function _help() {
 	echo -e "
@@ -46,8 +46,8 @@ function _get_pkg_url() {
 
 	LANG=C "${pacman_cmd}" --query --search --quiet "${pkg_keywords}" |
 		"${pacman_cmd}" --query --info - |
-        awk '/^Name/{name=$3} /^URL/{url=$3} {print name, url}' | 
-        sort --unique
+		awk '/^Name/{name=$3} /^URL/{url=$3} {print name, url}' |
+		sort --unique
 }
 
 _main "${@}"
