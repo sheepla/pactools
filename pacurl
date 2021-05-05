@@ -1,0 +1,54 @@
+#!/bin/bash
+
+set -eu
+
+readonly THIS_CMD="${0##*/}"
+readonly VERSION='0.0.1'
+readonly PACMANS=(
+	"paru"
+	"yay"
+	"pacman"
+) 
+
+function _help() {
+	echo -e "
+${THIS_CMD} -- Get url  
+
+USAGE
+    ${THIS_CMD} [OPTIONS] KEYWORDS...
+    
+OPTIONS
+    
+"
+}
+
+function _main() {
+	_get_pkg_url "${@}"
+}
+
+function _get_pacman_cmd() {
+	local _cmd
+	for _cmd in "${PACMANS[@]}"; do
+		if command -v "${_cmd}" &>/dev/null; then
+			echo -n "${_cmd}"
+			return 0
+		fi
+	done
+	_err 'The command for pacman or AUR helper was not found.'
+	exit 1
+}
+
+function _get_pkg_url() {
+	pkg_keywords="${@}"
+
+	local pacman_cmd
+	pacman_cmd="$(_get_pacman_cmd)"
+
+	LANG=C "${pacman_cmd}" --query --search --quiet "${pkg_keywords}" |
+		"${pacman_cmd}" --query --info - |
+        awk '/^Name/{name=$3} /^URL/{url=$3} {print name, url}' | 
+        sort --unique
+}
+
+_main "${@}"
+exit "${?}"
