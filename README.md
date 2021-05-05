@@ -6,8 +6,8 @@
 
 |Name|Description|
 |--|--|
-|pacdu|Get disk usage of installed packages|
-|pacurl|Get the URL of package projects|
+|`pacdu`|Get disk usage of installed packages|
+|`pacurl`|Get the URL of package projects|
 
 ## Usage
 
