@@ -28,7 +28,6 @@ Example:
 
 ```bash
 $ pacdu vim
-
 504.35KiB vimiv
 1863.81KiB ranger
 3.53MiB neovim-qt
@@ -47,6 +46,9 @@ $ pacdu vim
 Help:
 ```
 pacurl -- Get project URLs of packages
+
+USAGE
+    pacurl [OPTIONS] KEYWORDS...
 ```
 
 Example:
