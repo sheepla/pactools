@@ -52,7 +52,7 @@ USAGE
 ```
 
 Example:
-```
+```bash
 $ pacurl vim
 gvim https://www.vim.org
 neovim https://neovim.io
@@ -60,6 +60,43 @@ neovim https://www.vim.org
 neovim-qt https://github.com/equalsraf/neovim-qt
 neovim-qt https://neovim.io
 ...
+```
+
+### pacdeps
+
+`pacdeps` lists dependent packages.
+
+Help:
+```
+pacdeps -- Get a list of dependent packages
+
+USAGE
+    pacdeps PKGNAMES...
+```
+
+Example:
+
+```bash
+$ pacdeps neovim git
+neovim
+	libluv
+	libtermkey
+	libuv
+	libvterm
+	luajit
+	msgpack-c
+	unibilium
+git
+	curl
+	expat
+	grep
+	openssl
+	pcre2
+	perl
+	perl-error
+	perl-mailtools
+	shadow
+	zlib
 ```
 
 ## Installation
