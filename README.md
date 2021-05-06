@@ -65,7 +65,7 @@ neovim-qt https://neovim.io
 ## Installation
 
 ```bash
-git clone https://github.com/sheepla/pacutils
+git clone https://github.com/sheepla/pacutils.git
 cd pacutils
 make install
 ```
