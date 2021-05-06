@@ -1,0 +1,63 @@
+#!/bin/bash
+
+set -eu
+
+readonly THIS_CMD="${0##*/}"
+readonly VERSION='0.0.1'
+readonly PACMANS=(
+	"paru"
+	"yay"
+	"pacman"
+)
+
+function _help() {
+	echo -e "
+${THIS_CMD} -- Get a list of dependent packages
+
+USAGE
+    ${THIS_CMD} [OPTIONS] PKGNAMES...
+
+OPTIONS
+    -l --local             Search from installed packages
+    -o --only-result       Print dependent package names only.
+"
+}
+
+function _main() {
+	if [ "$#" -le 0 ]; then
+		_help
+	fi
+
+	_get_dependent_pkgs "${@}"
+}
+
+function _get_pacman_cmd() {
+	local _cmd
+	for _cmd in "${PACMANS[@]}"; do
+		if command -v "${_cmd}" &>/dev/null; then
+			echo -n "${_cmd}"
+			return 0
+		fi
+	done
+	_err 'The command for pacman or AUR helper was not found.'
+	exit 1
+}
+
+function _get_dependent_pkgs() {
+	local pacman_cmd
+	pacman_cmd="$(_get_pacman_cmd)"
+
+	for pkg_name in "${@}"; do
+
+		echo "${pkg_name}"
+
+		LANG=C "${pacman_cmd}" --sync --info "${pkg_name}" |
+			awk -F '[:<=>]' '/^Depends/ {print $2}' |
+			xargs -n1 |
+			sort |
+			sed 's/^/\t/'
+	done
+}
+
+_main "${@}"
+exit "${?}"
