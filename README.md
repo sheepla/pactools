@@ -8,6 +8,7 @@
 |--|--|
 |`pacdu`|Get disk usage of installed packages|
 |`pacurl`|Get the URL of package projects|
+|`pacdeps`|Get dependent packages|
 
 ## Usage
 
