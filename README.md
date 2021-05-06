@@ -8,7 +8,7 @@
 |--|--|
 |`pacdu`|Get disk usage of installed packages|
 |`pacurl`|Get the URL of package projects|
-|`pacdeps`|Get dependent packages|
+|`pacdeps`|Get a list of dependent packages|
 
 ## Usage
 
@@ -65,7 +65,7 @@ neovim-qt https://neovim.io
 
 ### pacdeps
 
-`pacdeps` lists dependent packages.
+`pacdeps` gets a list of packages that depend on the package with the name given in the argument
 
 Help:
 ```
