@@ -1,6 +1,6 @@
-# 📦 pacutils
+# 📦 pactools
 
-*pacutils* are package management utilities for Arch Linux.
+*pactools* are package management tools for Arch Linux.
 
 ## Commands
 
